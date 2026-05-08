@@ -1,40 +1,40 @@
-const container = document.querySelector('#grid_pilotos');
+const container = document.querySelector("#grid_pilotos");
 
-const urlApiOriginal = 'https://api.sportradar.com/motogp/trial/v2/en/sport_events/sr:stage:1238599/summary.json?api_key=nP6tsHNgDpOQWclZSAEeKigHMKTTQQ6ev9nOEPPK';
-const url = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(urlApiOriginal);
+const urlApiOriginal =
+  "https://api.sportradar.com/motogp/trial/v2/en/sport_events/sr:stage:1238599/summary.json?api_key=nP6tsHNgDpOQWclZSAEeKigHMKTTQQ6ev9nOEPPK";
+const url =
+  "https://api.codetabs.com/v1/proxy?quest=" +
+  encodeURIComponent(urlApiOriginal);
 
 async function carregar_grid() {
-    try {
-        container.innerHTML = '<p>Carregando grid....</p>';
+  try {
+    container.innerHTML = "<p>Carregando grid....</p>";
 
-        const res = await fetch(url);
-    
-        if (!res.ok) {
-            throw new Error(`Erro de rede! Status: ${res.status}`);
-        }
+    const res = await fetch(url);
 
-        const data = await res.json();
-        console.log("JSON carregado com sucesso:", data);
-        const listaPilotos = data.stage.competitors;
-        let html ="";
-    
-        listaPilotos.forEach((piloto) => {
-            const numeroMoto = piloto.result ? piloto.result.bike_number : 'Sem Nº';
+    const data = await res.json();
+    console.log("JSON carregado com sucesso:", data);
+    const listaPilotos = data.stage.competitors;
+    let html = "";
 
-            html += `
+    listaPilotos.forEach((piloto) => {
+      const numeroMoto = piloto.result ? piloto.result.bike_number : "Sem Nº";
+      const nomeEquipe = piloto.team ? piloto.team.name : "Sem equipe";
+
+      html += `
             <div>
                 <h5> ${piloto.name} </h5>
                 <p> Número: ${numeroMoto} </p>
+                <p> Equipe: ${nomeEquipe} </p>
                 <hr>
             </div>`;
-        });
-        
-        container.innerHTML = html;
-        
-    } catch (error) {
-        console.error("Requisição falhou:", error);
-        container.innerHTML = `<p> Ocorreu um erro na conexão: ${error.message} </p>`
-    }
+    });
+
+    container.innerHTML = html;
+  } catch (error) {
+    console.error("Requisição falhou:", error);
+    container.innerHTML = `<p> Ocorreu um erro na conexão: ${error.message} </p>`;
+  }
 }
 
 carregar_grid();
