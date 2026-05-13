@@ -1,0 +1,214 @@
+/* Custom MotoGP Styles */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Navbar Style */
+.motogp-navbar {
+    background-color: #1a1a1a;
+    border-bottom: 4px solid #e50014; /* MotoGP Red */
+}
+
+/* The MotoGP Official Logo font lookalike */
+.motogp-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 2rem;
+    color: #ffffff !important;
+    letter-spacing: -1px;
+}
+
+.page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    font-style: italic;
+}
+
+.search-input {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    color: #fff;
+}
+
+.search-input:focus {
+    background-color: #fff;
+    color: #1a1a1a;
+    border-color: #e50014;
+    box-shadow: 0 0 0 0.25rem rgba(229, 0, 20, 0.25);
+}
+
+.search-input::placeholder {
+    color: #aaa;
+}
+
+/* Cards (quadradinhos arredondados) */
+.piloto-card {
+    border: none;
+    border-radius: 16px; /* Arredondado */
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.piloto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+.card-header-motogp {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    color: white;
+    border-bottom: 4px solid #e50014;
+    padding: 20px 15px;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 0;
+    padding-right: 40px; /* Space for the bike number */
+}
+
+.bike-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.15);
+    line-height: 1;
+}
+
+.equipe-badge {
+    background-color: #e50014;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Caixas Retangulares Finas da Classificação */
+.standings-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    border-left: 6px solid #e50014; /* Destaque MotoGP Red */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin-bottom: 12px;
+}
+
+.standings-card:hover {
+    transform: translateX(8px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.position-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    min-width: 50px;
+}
+
+.points-badge {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.driver-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+/* Sidebar Moderno Expansível */
+.modern-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px; /* Largura inicial (apenas o ícone) */
+    background-color: rgba(0, 0, 0, 0.85); /* Preta e transparente */
+    backdrop-filter: blur(8px); /* Blur para dar aquele ar moderno e minimalista */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1050; /* Acima da navbar */
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modern-sidebar:hover {
+    width: 320px; /* Expande ao passar o mouse */
+}
+
+.sidebar-icon {
+    width: 60px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.sidebar-content {
+    padding: 20px 25px;
+    opacity: 0;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.2s ease;
+    transition-delay: 0s;
+}
+
+.modern-sidebar:hover .sidebar-content {
+    opacity: 1;
+    transition-delay: 0.15s; /* Mostra o conteúdo logo após expandir um pouco */
+}
+
+.sidebar-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sidebar-btn {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.sidebar-btn:hover {
+    transform: scale(1.03);
+}

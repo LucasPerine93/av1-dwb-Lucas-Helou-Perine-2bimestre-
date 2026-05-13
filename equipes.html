@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotoGP - Pilotos</title>
+    <title>MotoGP - Classificação de Equipes 2025</title>
 
-    <!-- Google Fonts: Montserrat (para títulos e estilo MotoGP) e Roboto (para texto) -->
+    <!-- Google Fonts: Montserrat e Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -25,7 +25,6 @@
     <!-- Sidebar / Menu Lateral Moderno -->
     <div class="modern-sidebar">
         <div class="sidebar-icon">
-            <!-- Ícone de Hamburguer (3 riscos) -->
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
             </svg>
@@ -33,6 +32,9 @@
         <div class="sidebar-content">
             <span class="sidebar-title">Menu do Campeonato</span>
             <hr class="border-secondary mt-1 mb-3">
+            <a href="index.html" class="btn btn-dark text-start rounded-pill fw-bold shadow-sm py-2 mb-3 sidebar-btn">
+                Home / Grid Principal
+            </a>
             <a href="detalhes.html" class="btn btn-danger text-start rounded-pill fw-bold shadow-sm py-2 mb-3 sidebar-btn">
                 Pilotos
             </a>
@@ -45,33 +47,35 @@
     <!-- Navbar MotoGP Style -->
     <nav class="navbar navbar-dark motogp-navbar sticky-top shadow-sm py-3" style="padding-left: 70px;">
         <div class="container d-flex justify-content-between align-items-center">
-
-            <!-- Barra de pesquisa (Deslocada para a esquerda) -->
-            <form class="d-flex" role="search" id="form-busca" style="max-width: 350px; width: 100%;">
-                <input class="form-control rounded-pill px-4 shadow-none search-input" type="search"
-                    placeholder="Buscar piloto ou equipe..." aria-label="Search" id="input-busca">
-            </form>
-
+            
+            <!-- Botão de Voltar -->
+            <a href="index.html" class="btn btn-outline-light rounded-pill px-4 fw-bold shadow-none" style="border-color: #444;">
+                &larr; Voltar
+            </a>
+            
             <!-- Logo MotoGP -->
             <span class="navbar-brand motogp-logo mb-0">MotoGP&trade;</span>
-
+            
+            <div style="width: 100px;"></div> <!-- Spacer para centralizar a logo corretamente -->
         </div>
     </nav>
 
     <!-- Conteúdo Principal -->
     <main class="container my-5" style="padding-left: 20px;">
-        <div class="d-flex justify-content-between align-items-end mb-4 border-bottom border-2 border-danger pb-2">
-            <h2 class="page-title mb-0">Grid da Temporada - 2025</h2>
+        <div class="d-flex justify-content-between align-items-end mb-4 border-bottom border-2 border-dark pb-2">
+            <h2 class="page-title mb-0">Classificação de Equipes - 2025</h2>
         </div>
 
-        <!-- Grid de Pilotos -->
-        <div id="grid_pilotos" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-            <!-- Os cards serão injetados aqui pelo JS -->
+        <!-- Container da Classificação -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8" id="lista_equipes">
+                <!-- As caixas retangulares finas serão injetadas aqui pelo JS -->
+            </div>
         </div>
     </main>
 
     <!-- JS -->
-    <script src="JS/script.js"></script>
+    <script src="JS/equipes.js"></script>
 </body>
 
 </html>
