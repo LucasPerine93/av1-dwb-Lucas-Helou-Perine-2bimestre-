@@ -61,23 +61,59 @@ function renderizarPilotos(listaPilotos) {
     listaPilotos.forEach((piloto) => {
       const numeroMoto = piloto.result ? piloto.result.bike_number : "N/A";
       const nomeEquipe = piloto.team ? piloto.team.name : "Sem equipe";
+      const nacionalidade = piloto.nationality || "N/A";
+      const corridas = piloto.result && piloto.result.races !== undefined ? piloto.result.races : "0";
+      const pilotoId = piloto.id; // Pegando o ID da API para passar na URL
+
+      // Formatar o nome de "Sobrenome, Nome" para "NOME SOBRENOME"
+      let nomeFormatado = piloto.name;
+      if (nomeFormatado.includes(",")) {
+          const partes = nomeFormatado.split(",");
+          nomeFormatado = `${partes[1].trim()} ${partes[0].trim()}`.toUpperCase();
+      } else {
+          nomeFormatado = nomeFormatado.toUpperCase();
+      }
 
       html += `
         <div class="col">
             <div class="card piloto-card shadow-sm h-100">
                 <div class="card-header-motogp position-relative">
-                    <h5 class="card-title text-truncate" title="${piloto.name}">${piloto.name}</h5>
+                    <h5 class="card-title text-truncate" title="${nomeFormatado}">${nomeFormatado}</h5>
                     <span class="bike-number">${numeroMoto}</span>
                 </div>
-                <div class="card-body d-flex flex-column justify-content-between">
-                    <div>
-                        <p class="text-muted mb-1 small text-uppercase fw-bold">Moto</p>
-                        <p class="fs-5 fw-bold mb-3 text-dark">Nº ${numeroMoto}</p>
-                    </div>
-                    <div>
-                        <span class="equipe-badge text-truncate d-block w-100" title="${nomeEquipe}">
+                <div class="card-body d-flex flex-column justify-content-start">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="equipe-badge text-truncate" title="${nomeEquipe}">
                             ${nomeEquipe}
                         </span>
+                        <span class="chevron-icon text-muted fs-5">&#9662;</span>
+                    </div>
+                    
+                    <span class="click-hint text-center w-100 mt-2">Clique para Telemetria</span>
+
+                    <!-- Caixa de Telemetria (Oculta por padrão) -->
+                    <div class="piloto-card-telemetry">
+                        <div class="telemetry-box mt-3">
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Nacionalidade</span>
+                                <span class="telemetry-value">${nacionalidade}</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Equipe</span>
+                                <span class="telemetry-value">${nomeEquipe}</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Nº Piloto</span>
+                                <span class="telemetry-value">${numeroMoto}</span>
+                            </div>
+                            <div class="telemetry-row">
+                                <span class="telemetry-label">Corridas</span>
+                                <span class="telemetry-value">${corridas}</span>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <a href="perfil.html?id=${encodeURIComponent(pilotoId)}" class="btn btn-sm btn-outline-light rounded-pill px-4 fw-bold">Ver Perfil Completo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,6 +122,19 @@ function renderizarPilotos(listaPilotos) {
 
     container.innerHTML = html;
 }
+
+// Event listener para expandir o card ao clicar
+container.addEventListener('click', (e) => {
+    // Se clicou no botão "Ver Perfil Completo", não faz o toggle da caixa
+    if (e.target.closest('a')) {
+        return; 
+    }
+
+    const card = e.target.closest('.piloto-card');
+    if (card) {
+        card.classList.toggle('expanded');
+    }
+});
 
 // Event listener para a barra de pesquisa
 if (inputBusca) {

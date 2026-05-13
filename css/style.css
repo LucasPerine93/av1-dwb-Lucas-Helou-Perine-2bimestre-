@@ -53,6 +53,7 @@ body {
     background-color: #ffffff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .piloto-card:hover {
@@ -211,4 +212,78 @@ body {
 
 .sidebar-btn:hover {
     transform: scale(1.03);
+}
+
+/* Estilos da Telemetria (Card Expansível) */
+.piloto-card-telemetry {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, margin-top 0.3s ease;
+}
+
+.piloto-card.expanded .piloto-card-telemetry {
+    max-height: 400px; /* Espaço suficiente para o conteúdo da telemetria */
+    opacity: 1;
+}
+
+.telemetry-box {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 15px;
+    color: #fff;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.telemetry-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding: 10px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+}
+
+.telemetry-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.telemetry-row:first-child {
+    padding-top: 0;
+}
+
+.telemetry-label {
+    color: #999;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.telemetry-value {
+    font-weight: 800;
+    text-align: right;
+    color: #fff;
+}
+
+/* Setinha indicadora do card expansível */
+.chevron-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.piloto-card.expanded .chevron-icon {
+    transform: rotate(180deg);
+}
+
+.click-hint {
+    font-size: 0.75rem;
+    color: #e50014;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    letter-spacing: 1px;
 }
